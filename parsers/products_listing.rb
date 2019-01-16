@@ -1,0 +1,16 @@
+require './lib/headers'
+body = Nokogiri.HTML(content)
+products = body.search(".product-list-item")
+
+scrape_url_nbr_products = body.at(".amount").text.strip.split("av").last.strip.to_i
+
+products.each_with_index do |product,i|
+  pages << {
+      page_type: 'product_details',
+      method: 'GET',
+      headers: ReqHeaders::SEARCH_PAGE_HEADER_REQ,
+      url: product.at(".product-name").at("a").attr("href"),
+
+      }
+
+end
