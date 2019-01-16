@@ -38,6 +38,7 @@ review = body.at(".reviews-amount").text.scan(/\d+/).join rescue ''
 item_size = nil
 uom = nil
 in_pack = nil
+
 [title, description].each do |size_text|
   next unless size_text
   regexps = [
@@ -121,8 +122,10 @@ product_details = {
     SALES_PRICE: price,
     IS_AVAILABLE: is_available,
     PROMOTION_TEXT: promotion,
-    EXTRACTED_ON: Time.now.to_s
+    EXTRACTED_ON: Time.now.to_s,
+
 }
+product_details['_collection'] = 'products'
 
 
 outputs << product_details
