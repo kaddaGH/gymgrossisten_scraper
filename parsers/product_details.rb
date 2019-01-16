@@ -31,7 +31,7 @@ image_url = body.at('//meta[@property="og:image"]').attr("content") rescue nil
 image_url ||= body.at(".image-gallery-preview-image").attr("src") rescue ''
 price = body.search(".full-product-price").at(".price").text.gsub("kr", "").unicode_normalize(:nfkc).strip rescue nil
 is_available = price.nil? ? "0" : "1"
-promotion = body.search(".product-img-box").search(".ribbons").text.gsub("\n", "").gsub("\t", "").gsub("\r", "").unicode_normalize(:nfkc).strip.squish
+promotion = body.search(".product-img-box").search(".ribbons").text.gsub("\n", "").gsub("\t", "").gsub("\r", "").unicode_normalize(:nfkc).strip
 rating = body.at(".ratings").at(".rating-box").children[1].attr("style").gsub("width:", "").strip rescue ''
 review = body.at(".reviews-amount").text.scan(/\d+/).join rescue ''
 
@@ -120,7 +120,7 @@ product_details = {
     PRODUCT_NBR_OF_REVIEWS: review,
     SALES_PRICE: price,
     IS_AVAILABLE: is_available,
-    #PROMOTION_TEXT: promotion,
+    PROMOTION_TEXT: promotion,
     EXTRACTED_ON: Time.now.to_s
 }
 
