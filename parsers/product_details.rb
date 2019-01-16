@@ -30,6 +30,7 @@ description ||= body.at(".product-description-short").text.strip rescue ''
 image_url = body.at('//meta[@property="og:image"]').attr("content") rescue nil
 image_url ||= body.at(".image-gallery-preview-image").attr("src") rescue ''
 price = body.search(".full-product-price").at(".price").text.gsub("kr", "").unicode_normalize(:nfkc).strip rescue nil
+price ||= body.search(".regular-price").at(".price").text.gsub("kr", "").unicode_normalize(:nfkc).strip rescue nil
 is_available = price.nil? ? "0" : "1"
 promotion = body.search(".product-img-box").search(".ribbons").text.gsub("\n", "").gsub("\t", "").gsub("\r", "").unicode_normalize(:nfkc).strip
 rating = body.at(".ratings").at(".rating-box").children[1].attr("style").gsub("width:", "").strip rescue ''
