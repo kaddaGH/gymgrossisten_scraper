@@ -1,7 +1,8 @@
 require './lib/headers'
 
 # 1: Seed taxonomy & search pages
-pages << {
+pagess =[]
+pagess << {
     page_type: 'products_listing',
     method: 'GET',
     headers: ReqHeaders::SEARCH_PAGE_HEADER_REQ,
@@ -14,7 +15,7 @@ pages << {
 
 
 }
-search_terms = ['Red Bull', 'RedBull', 'Energidryck', 'Energidrycker']
+search_terms = ['Red Bull']
 search_terms.each do |search_term|
 
   pages << {

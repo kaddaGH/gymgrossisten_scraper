@@ -20,6 +20,5 @@ products.each_with_index do |product,i|
       }
 
       }
-  next
 
 end
