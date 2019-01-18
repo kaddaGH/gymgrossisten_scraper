@@ -4,7 +4,7 @@ products = body.search(".product-list-item")
 
 scrape_url_nbr_products = body.at(".amount").text.strip.split("av").last.strip.to_i
 
-products.each_with_index do |product,i|
+products.take(1).each_with_index do |product,i|
 
   pages << {
       page_type: 'product_details',
