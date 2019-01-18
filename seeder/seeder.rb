@@ -3,7 +3,7 @@ require './lib/headers'
 # 1: Seed taxonomy & search pages
 
 search_terms = ['Red Bull', 'RedBull', 'Energidryck', 'Energidrycker']
-search_terms.take(1).each do |search_term|
+search_terms.each do |search_term|
 
   pages << {
       page_type: 'products_listing',
