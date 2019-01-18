@@ -7,19 +7,6 @@ scrape_url_nbr_products = body.at(".amount").text.strip.split("av").last.strip.t
 products.each_with_index do |product,i|
 
 
-  pages << {
-      page_type: 'product_details',
-      method: 'GET',
-      headers: ReqHeaders::SEARCH_PAGE_HEADER_REQ,
-      url: product.at(".product-name").at("a").attr("href"),
-      vars:{
-          'input_type' => page['vars']['input_type'],
-          'search_term' => page['vars']['search_term'],
-          'SCRAPE_URL_NBR_PRODUCTS' => scrape_url_nbr_products,
-          'rank' => i + 1,
-          'page' => page['vars']['page']
-      }
 
-      }
 
 end
