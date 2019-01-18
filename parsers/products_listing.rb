@@ -1,10 +1,10 @@
 require './lib/headers'
 body = Nokogiri.HTML(content)
-products = body.search(".product-list-item")
+products = body.css(".product-list-item")
 
-scrape_url_nbr_products = body.at(".amount").text.strip.split("av").last.strip.to_i
+scrape_url_nbr_products = body.at_css(".amount").text.strip.split("av").last.strip.to_i
 
-products.take(1).each_with_index do |product,i|
+products.each_with_index do |product,i|
 
   pages << {
       page_type: 'product_details',
