@@ -4,13 +4,14 @@ products = body.css(".product-list-item")
 
 scrape_url_nbr_products = body.at_css(".amount").text.strip.split("av").last.strip.to_i
 
-products.take(1).each_with_index do |product,i|
+
+products.each_with_index do |product,i|
 
   pages << {
       page_type: 'product_details',
       method: 'GET',
       headers: ReqHeaders::SEARCH_PAGE_HEADER_REQ,
-      url: product.at(".product-name").at("a").attr("href"),
+      url: product.at(".product-name").at("a").attr("href")+"?search=#{page['vars']['search_term']}",
       vars:{
           'input_type' => page['vars']['input_type'],
           'search_term' => page['vars']['search_term'],
@@ -22,3 +23,4 @@ products.take(1).each_with_index do |product,i|
       }
 
 end
+
